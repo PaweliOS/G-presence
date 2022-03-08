@@ -2,15 +2,13 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Group" representedClassName=".Group" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="parentRelationship" inverseEntity="Person"/>
     </entity>
     <entity name="Person" representedClassName=".Person" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="presence" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="parentRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="newRelationship" inverseEntity="Group"/>
     </entity>
     <elements>
-        <element name="Group" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="Person" positionX="132.87744140625" positionY="-12.10198974609375" width="128" height="88"/>
+        <element name="Person" positionX="-149.1114501953125" positionY="19.65170288085938" width="128" height="73"/>
+        <element name="Group" positionX="-548.64208984375" positionY="0.94970703125" width="128" height="58"/>
     </elements>
 </model>

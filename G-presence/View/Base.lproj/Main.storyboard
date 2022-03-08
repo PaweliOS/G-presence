@@ -10,7 +10,7 @@
         <!--Groups-->
         <scene sceneID="tF4-N2-mK9">
             <objects>
-                <tableViewController id="F1U-dX-R2t" customClass="GroupsTableViewController" customModule="G_presence" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="F1U-dX-R2t" customClass="GroupsTableViewController" customModule="G_presence" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="oR4-FR-bfM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,20 @@
                             <outlet property="delegate" destination="F1U-dX-R2t" id="d8j-62-fc0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Groups" id="f6F-Xq-zGR"/>
+                    <navigationItem key="navigationItem" title="Groups" id="f6F-Xq-zGR">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="trash" id="eSs-C4-URq">
+                                <connections>
+                                    <action selector="deleteGroupButtonPressed:" destination="F1U-dX-R2t" id="qEU-hn-NUi"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="Bxy-YK-vhg">
+                                <connections>
+                                    <action selector="addGroupButtonPressed:" destination="F1U-dX-R2t" id="jHe-aD-j5j"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <segue destination="EDL-Xt-x6b" kind="show" identifier="goToPersons" id="S6h-er-Xgs"/>
                     </connections>
