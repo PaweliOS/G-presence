@@ -9,9 +9,19 @@ import UIKit
 import CoreData
 
 class PersonsTableViewController: UITableViewController {
-
+    
+    var personList = [Person]()
+    var selectedGroup : Group? {
+        didSet {
+            loadPerson()
+        }
+    }
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -21,26 +31,49 @@ class PersonsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+/*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
     }
-
+*/
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return personList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PersonCell", for: indexPath)
+        let personCell = personList[indexPath.row]
+        cell.textLabel?.text = personCell.name
+        
         // Configure the cell...
 
         return cell
     }
-    */
+    
+// MARK: - Data manipulation methods
+    
+    func loadPerson(with request: NSFetchRequest<Person> = Person.fetchRequest() ){
+        do {
+            personList = try context.fetch(request)
+        } catch {
+            print("Error fetching Person data from context \(error)")
+        }
+        tableView.reloadData()
+    }
+    
+    func savePerson() {
+        
+        do {
+        try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        tableView.reloadData()
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

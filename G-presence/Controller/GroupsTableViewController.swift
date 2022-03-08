@@ -49,6 +49,20 @@ class GroupsTableViewController: UITableViewController {
         return cell
     }
     
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToPersons", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let  destinationVC = segue.destination as! PersonsTableViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedGroup = groupsList[indexPath.row]
+        }
+    }
+    
+    
 // MARK: - Data manipulation methods
     
     func saveGroup() {
@@ -94,6 +108,8 @@ class GroupsTableViewController: UITableViewController {
     }
     
     @IBAction func deleteGroupButtonPressed(_ sender: UIBarButtonItem) {
+        
+        
     }
     
     /*

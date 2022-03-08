@@ -75,7 +75,12 @@
                             <outlet property="delegate" destination="EDL-Xt-x6b" id="p01-od-nTx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Persons" id="azb-du-Jn4"/>
+                    <navigationItem key="navigationItem" title="Persons" id="azb-du-Jn4">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="trash" id="nZC-Og-MKW"/>
+                            <barButtonItem systemItem="add" id="Osm-AZ-vcY"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qm5-ug-vAu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
