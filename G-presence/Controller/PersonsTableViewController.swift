@@ -18,9 +18,13 @@ class PersonsTableViewController: UITableViewController {
     }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -30,6 +34,10 @@ class PersonsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+ 
+    
+    
+    
     // MARK: - Table view data source
 /*
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,14 +56,57 @@ class PersonsTableViewController: UITableViewController {
         let personCell = personList[indexPath.row]
         cell.textLabel?.text = personCell.name
         
+        cell.accessoryType = personCell.presence ? .checkmark : .none
         // Configure the cell...
 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        personList[indexPath.row].presence = !personList[indexPath.row].presence//zapis do tabeli na tak jeśli nie i na nie jeśli tak
+        savePerson() //zapis context'u
+        tableView.reloadData()
+        tableView.deselectRow(at: indexPath, animated: true) // animacja odznaczenia
+    }
+    
+ 
+//   MARK: - Persons modifying
+    
+    @IBAction func addPersonButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        let allert = UIAlertController(title: "Add new person", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add person", style: .default) { action in
+            let newPerson = Person(context: self.context)
+            newPerson.name = textField.text!
+            // ustawiam własności obiektu tabeli Person:
+            newPerson.presence = false
+            newPerson.parentGroup = self.selectedGroup  //wskazujesz obiekt klasy Group (w bazie)
+            
+            self.personList.append(newPerson)
+            self.savePerson()
+            self.tableView.reloadData()
+        }
+        allert.addTextField { allertTextField in
+            allertTextField.placeholder = "Create new person"
+            textField = allertTextField
+        }
+        
+        allert.addAction(action)
+        present(allert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
 // MARK: - Data manipulation methods
     
-    func loadPerson(with request: NSFetchRequest<Person> = Person.fetchRequest() ){
+    func loadPerson(with request: NSFetchRequest<Person> = Person.fetchRequest(), predicate: NSPredicate? = nil ){
+        
+        let groupPredicate = NSPredicate(format: "parentGroup.name MATCHES %@", selectedGroup!.name!)
+        request.predicate = groupPredicate
+        
         do {
             personList = try context.fetch(request)
         } catch {

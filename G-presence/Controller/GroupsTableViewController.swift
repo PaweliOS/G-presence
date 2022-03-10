@@ -95,8 +95,8 @@ class GroupsTableViewController: UITableViewController {
         let action = UIAlertAction(title: "Add group", style: .default) { action in
             let newGroup = Group(context: self.context)
             newGroup.name = textField.text!
-            self.groupsList.append(newGroup)
-            self.saveGroup()
+            self.groupsList.append(newGroup) //ważna kolejność
+            self.saveGroup()                //
             self.tableView.reloadData()
         }
         allert.addTextField { allertTextField in

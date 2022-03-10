@@ -76,10 +76,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Persons" id="azb-du-Jn4">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="trash" id="nZC-Og-MKW"/>
-                            <barButtonItem systemItem="add" id="Osm-AZ-vcY"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Osm-AZ-vcY">
+                            <connections>
+                                <action selector="addPersonButtonPressed:" destination="EDL-Xt-x6b" id="6kf-WF-Tp7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qm5-ug-vAu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
