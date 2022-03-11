@@ -18,14 +18,11 @@ class PersonsTableViewController: UITableViewController {
     }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -34,8 +31,6 @@ class PersonsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
- 
-    
     
     
     // MARK: - Table view data source
@@ -57,6 +52,8 @@ class PersonsTableViewController: UITableViewController {
         cell.textLabel?.text = personCell.name
         
         cell.accessoryType = personCell.presence ? .checkmark : .none
+        
+        
         // Configure the cell...
 
         return cell
@@ -68,6 +65,27 @@ class PersonsTableViewController: UITableViewController {
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true) // animacja odznaczenia
     }
+    
+// kasowanie osoby przez przesunięcie wiersza tabeli - wymaga wcześniejszego usunięcia osób z kasowanej grupy - do zrobienia
+/*
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+
+            let deletedPerson = personList[indexPath.row]
+            context.delete(deletedPerson)
+            personList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            savePerson()
+        }
+*/
+       /* na chwilę obecną wyłączam
+        else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+        
+    }
+   */
+    
     
  
 //   MARK: - Persons modifying
@@ -125,7 +143,8 @@ class PersonsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -134,17 +153,6 @@ class PersonsTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
 
     /*
     // Override to support rearranging the table view.

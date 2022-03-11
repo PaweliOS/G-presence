@@ -75,6 +75,7 @@
                             <outlet property="delegate" destination="EDL-Xt-x6b" id="p01-od-nTx"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Persons" id="azb-du-Jn4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Osm-AZ-vcY">
                             <connections>
@@ -82,6 +83,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qm5-ug-vAu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
